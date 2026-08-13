@@ -1,18 +1,206 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lucas Test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucas Abreu's GitHub Site</title>
 
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="5c4bd93f-e8d5-4b90-b50d-abc78991dbf3"  type="text/javascript"></script>
+<!-- Cookiebot - must load before any other script/tracker -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="5c4bd93f-e8d5-4b90-b50d-abc78991dbf3" type="text/javascript"></script>
+
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0 20px 60px;
+  }
+  header {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 30px;
+  }
+  h1 { margin-bottom: 4px; }
+  nav {
+    max-width: 900px;
+    margin: 0 auto 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+  }
+  nav a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  nav a:hover { text-decoration: underline; }
+  main { max-width: 900px; margin: 0 auto; }
+  h2 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin-top: 40px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .card-title .domain {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .card iframe, .card video {
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+  }
+  .card p.note {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  #status-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .status-item {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+    display: inline-block;
+  }
+  .dot.loaded { background: #3fb950; }
+  .dot.blocked { background: #f85149; }
+  footer {
+    max-width: 900px;
+    margin: 60px auto 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
-  <h1>Meu Nome</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="subpage.html">Subpágina</a>
-  </nav>
-  <p>Conteúdo aqui...</p>
+
+<header>
+  <h1>Lucas Abreu</h1>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+</nav>
+
+<main>
+  <p>A personal sandbox for testing consent management, tracker declarations, and third-party service integrations. The panel below shows which services are currently loading (or blocked by your CMP).</p>
+
+  <h2>Service Status</h2>
+  <div id="status-panel">
+    <div class="status-item"><span class="dot loaded"></span> Cookiebot</div>
+    <div class="status-item"><span class="dot" id="dot-yt"></span> YouTube</div>
+    <div class="status-item"><span class="dot" id="dot-vimeo"></span> Vimeo</div>
+    <div class="status-item"><span class="dot" id="dot-sc"></span> SoundCloud</div>
+  </div>
+
+  <h2>Media Embeds</h2>
+
+  <div class="card">
+    <div class="card-title">▶ YouTube (Privacy Enhanced) <span class="domain">youtube-nocookie.com</span></div>
+    <iframe id="frame-yt-nc" height="220" data-src="https://www.youtube-nocookie.com/embed/bp612TdEK1c" data-cookieconsent="marketing" allowfullscreen></iframe>
+  </div>
+
+  <div class="card">
+    <div class="card-title">▶ YouTube <span class="domain">youtube.com</span></div>
+    <iframe id="frame-yt" height="220" data-src="https://www.youtube.com/embed/tROVq1lW0IU" data-cookieconsent="marketing" allowfullscreen></iframe>
+  </div>
+
+  <div class="card">
+    <div class="card-title">▶ Vimeo <span class="domain">vimeo.com</span></div>
+    <iframe id="frame-vimeo" height="220" data-src="https://player.vimeo.com/video/76979871" data-cookieconsent="marketing" allowfullscreen></iframe>
+  </div>
+
+  <div class="card">
+    <div class="card-title">♪ SoundCloud <span class="domain">soundcloud.com</span></div>
+    <iframe id="frame-sc" height="120" data-src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1398648325&color=%2358a6ff&auto_play=false&show_artwork=true" data-cookieconsent="marketing"></iframe>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🕐 Live Clock <span class="domain">clocklink.com</span></div>
+    <iframe height="120" src="https://www.clocklink.com/html5embed.php?clock=004&timezone=ACST&color=green&size=120"></iframe>
+    <p class="note">Live clock widget via clocklink.com — may be blocked depending on your consent settings.</p>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 Lucas Abreu · GitHub Test Lab · Built for CMP & consent experimentation
+</footer>
+
+<script>
+  // Detects real status of marketing services (YouTube, Vimeo, SoundCloud)
+  // Cookiebot automatically swaps data-src -> src once the user accepts
+  // the "marketing" category (thanks to the data-cookieconsent="marketing" attribute).
+  const services = [
+    { id: 'dot-yt',    frame: 'frame-yt-nc' },
+    { id: 'dot-vimeo', frame: 'frame-vimeo' },
+    { id: 'dot-sc',    frame: 'frame-sc' }
+  ];
+
+  function updateStatus() {
+    services.forEach(function (s) {
+      const dot = document.getElementById(s.id);
+      const frame = document.getElementById(s.frame);
+      if (!dot || !frame) return;
+
+      const hasLoaded = !!frame.getAttribute('src');
+      dot.classList.remove('loaded', 'blocked');
+      dot.classList.add(hasLoaded ? 'loaded' : 'blocked');
+      dot.title = hasLoaded ? 'Loaded' : 'Blocked (awaiting consent)';
+    });
+  }
+
+  // Initial state (before the user responds to the banner)
+  document.addEventListener('DOMContentLoaded', updateStatus);
+
+  // Cookiebot fires these global events when the user accepts/declines
+  window.addEventListener('CookiebotOnAccept', updateStatus);
+  window.addEventListener('CookiebotOnDecline', updateStatus);
+  window.addEventListener('CookiebotOnConsentReady', updateStatus);
+</script>
+
 </body>
 </html>
