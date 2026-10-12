@@ -20,21 +20,6 @@ header {
   padding-top: 30px;
 }
 h1 { margin-bottom: 4px; }
-nav {
-  max-width: 900px;
-  margin: 0 auto 30px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 16px;
-}
-nav a {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 14px;
-}
-nav a:hover { text-decoration: underline; }
 main { max-width: 900px; margin: 0 auto; }
 h2 {
   border-bottom: 1px solid var(--border);
@@ -125,3 +110,48 @@ body.page-freemium  { --accent: #a371f7; --bg: #150f1f; }
 
 .account { color: var(--muted); font-size: 14px; margin: 4px 0 0; }
 .account strong { color: var(--accent); font-weight: 600; user-select: all; }
+
+/* Navigation tabs: one per banner, colored like its page */
+nav {
+  max-width: 900px;
+  margin: 20px auto 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+nav a {
+  --tab: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color .15s, background .15s, transform .15s;
+}
+nav a::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--tab);
+}
+nav a:hover { border-color: var(--tab); transform: translateY(-1px); }
+nav a[aria-current="page"] {
+  border-color: var(--tab);
+  background: color-mix(in srgb, var(--tab) 18%, var(--panel));
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 0 0 1px var(--tab);
+  pointer-events: none;
+}
+nav a.tab-premium  { --tab: #d29922; }
+nav a.tab-trial    { --tab: #3fb950; }
+nav a.tab-freemium { --tab: #a371f7; }
