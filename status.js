@@ -37,3 +37,46 @@ function clearConsent() {
   });
   location.reload();
 }
+
+// Clears every cookie and storage this site can reach, then reloads
+async function clearAllSiteData() {
+  if (!confirm('Clear all cookies and site data for this site?')) return;
+
+  // Cookies: expire each one across every path/domain variant (JS can't see HttpOnly ones)
+  var parts = location.hostname.split('.');
+  var domains = [undefined];
+  for (var i = 0; i < parts.length - 1; i++) {
+    var d = parts.slice(i).join('.');
+    domains.push(d, '.' + d);
+  }
+  var segs = location.pathname.split('/').filter(Boolean);
+  var paths = ['/'];
+  segs.reduce(function (acc, s) { acc += '/' + s; paths.push(acc); return acc; }, '');
+  document.cookie.split(';').forEach(function (c) {
+    var name = c.split('=')[0].trim();
+    if (!name) return;
+    domains.forEach(function (dom) {
+      paths.forEach(function (p) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; max-age=0; path=' + p + (dom ? '; domain=' + dom : '');
+      });
+    });
+  });
+
+  try { localStorage.clear(); } catch (e) {}
+  try { sessionStorage.clear(); } catch (e) {}
+  try {
+    if (indexedDB.databases) {
+      (await indexedDB.databases()).forEach(function (db) { indexedDB.deleteDatabase(db.name); });
+    }
+  } catch (e) {}
+  try {
+    if (window.caches) (await caches.keys()).forEach(function (k) { caches.delete(k); });
+  } catch (e) {}
+  try {
+    if (navigator.serviceWorker) {
+      (await navigator.serviceWorker.getRegistrations()).forEach(function (r) { r.unregister(); });
+    }
+  } catch (e) {}
+
+  location.reload();
+}
