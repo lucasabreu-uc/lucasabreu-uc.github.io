@@ -201,3 +201,33 @@ nav a.tab-freemium { --tab: #a371f7; }
   max-height: 120px;
   overflow-y: auto;
 }
+
+/* Cookie declaration (rendered by Cookiebot's cd.js) */
+#cookie-declaration {
+  background: #fff;
+  color: #141414;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+}
+#cookie-declaration-msg { color: var(--muted); font-size: 13px; margin: 0 0 8px; }
+
+/* Section title with an action button on the right */
+h2.with-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-danger {
+  background: transparent;
+  color: #f85149;
+  border: 1px solid #f85149;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn-danger:hover { background: #f85149; color: #fff; }

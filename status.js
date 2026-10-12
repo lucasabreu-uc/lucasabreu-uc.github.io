@@ -141,3 +141,33 @@ async function clearAllSiteData() {
   });
   window.addEventListener('load', renderConsent);
 })();
+
+// ---- Cookie declaration: lists every cookie the banner knows about, per category ----
+// Built from the page's own Cookiebot <script id="Cookiebot"> (same domain + cbid),
+// so each banner page shows its own scan result.
+document.addEventListener('DOMContentLoaded', function () {
+  var box = document.getElementById('cookie-declaration');
+  var msg = document.getElementById('cookie-declaration-msg');
+  if (!box) return;
+
+  var tag = document.getElementById('Cookiebot');
+  if (!tag || !tag.src || !tag.getAttribute('data-cbid')) {
+    box.style.display = 'none';
+    msg.textContent = 'No banner script on this page yet, so there is no cookie list to show.';
+    return;
+  }
+
+  var url = new URL(tag.src).origin + '/' + tag.getAttribute('data-cbid') + '/cd.js';
+  var s = document.createElement('script');
+  s.id = 'CookieDeclaration';
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = url;
+  s.setAttribute('data-culture', 'EN');
+  s.onerror = function () {
+    box.style.display = 'none';
+    msg.textContent = 'Could not load the cookie list from ' + url;
+  };
+  box.appendChild(s);
+  msg.textContent = 'Loaded from ' + url;
+});

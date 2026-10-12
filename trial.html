@@ -31,7 +31,9 @@
 <main>
   <p>Test page for the <strong>Trial</strong> banner. Paste the Trial script in the marked spot in the &lt;head&gt; of <code>trial.html</code>. Consent is stored per domain: use "Clear consent &amp; reload" to see the banner again after switching pages.</p>
 
-  <h2>Consent Status</h2>
+  <h2 class="with-action">Consent Status
+    <button type="button" class="btn-danger" onclick="clearAllSiteData()">Clear ALL cookies &amp; site data</button>
+  </h2>
   <div class="card pending" id="consent-panel">
     <div class="consent-summary">Banner result: <span class="badge">Checking…</span></div>
     <div class="consent-cats">
@@ -43,6 +45,10 @@
     <div class="consent-meta" id="consent-meta"></div>
     <ul id="consent-log"></ul>
   </div>
+
+  <h2>Cookies in the Banner</h2>
+  <p id="cookie-declaration-msg"></p>
+  <div id="cookie-declaration"></div>
 
   <h2>Service Status</h2>
   <div id="status-panel">
@@ -86,7 +92,6 @@
   <div class="tools">
     <a onclick="window.Cookiebot && window.Cookiebot.show()">Privacy settings</a>
     <a onclick="clearConsent()">Clear consent &amp; reload</a>
-    <a onclick="clearAllSiteData()">Clear ALL cookies &amp; site data</a>
   </div>
 </footer>
 
