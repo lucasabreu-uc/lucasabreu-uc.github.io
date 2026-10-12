@@ -80,3 +80,64 @@ async function clearAllSiteData() {
 
   location.reload();
 }
+
+// ---- Consent status panel: shows what the user actually chose in the banner ----
+(function () {
+  var CATS = ['necessary', 'preferences', 'statistics', 'marketing'];
+
+  function log(msg) {
+    var ul = document.getElementById('consent-log');
+    if (!ul) return;
+    var li = document.createElement('li');
+    li.textContent = new Date().toLocaleTimeString() + '  ' + msg;
+    ul.insertBefore(li, ul.firstChild);
+  }
+
+  function renderConsent() {
+    var panel = document.getElementById('consent-panel');
+    if (!panel) return;
+    var cb = window.Cookiebot;
+    var badge = panel.querySelector('.badge');
+    var meta = document.getElementById('consent-meta');
+    var state, text;
+
+    if (!cb) {
+      state = 'nobanner'; text = 'No banner script loaded';
+      meta.textContent = 'Cookiebot is not on this page. Paste the banner script in the <head>.';
+    } else if (!cb.hasResponse) {
+      state = 'pending'; text = 'No answer yet';
+      meta.textContent = 'The user has not responded to the banner.';
+    } else {
+      var c = cb.consent || {};
+      var optional = CATS.filter(function (k) { return k !== 'necessary'; });
+      var allowed = optional.filter(function (k) { return c[k]; }).length;
+      if (allowed === optional.length) { state = 'accepted'; text = 'Cookies ACCEPTED'; }
+      else if (allowed === 0)          { state = 'declined'; text = 'Cookies DECLINED (necessary only)'; }
+      else                             { state = 'partial';  text = 'PARTIAL consent'; }
+      meta.textContent = 'Method: ' + (c.method || 'n/a') + (cb.consentUTC ? ' · Date: ' + cb.consentUTC : '');
+    }
+
+    panel.className = 'card ' + state;
+    badge.textContent = text;
+    CATS.forEach(function (k) {
+      var el = document.getElementById('cat-' + k);
+      if (!el) return;
+      var on = !!(window.Cookiebot && window.Cookiebot.hasResponse && window.Cookiebot.consent && window.Cookiebot.consent[k]);
+      el.querySelector('.dot').className = 'dot ' + (on ? 'on' : 'off');
+      el.querySelector('.val').textContent = on ? 'allowed' : 'not allowed';
+    });
+  }
+
+  [['CookiebotOnDialogDisplay', 'Banner displayed'],
+   ['CookiebotOnConsentReady', 'Consent ready'],
+   ['CookiebotOnAccept', 'User accepted'],
+   ['CookiebotOnDecline', 'User declined / changed']].forEach(function (e) {
+    window.addEventListener(e[0], function () { log(e[1]); renderConsent(); });
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    renderConsent();
+    log(window.Cookiebot ? 'Page loaded (Cookiebot found)' : 'Page loaded (no Cookiebot)');
+  });
+  window.addEventListener('load', renderConsent);
+})();

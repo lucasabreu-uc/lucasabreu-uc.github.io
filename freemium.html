@@ -31,6 +31,19 @@
 <main>
   <p>Test page for the <strong>Freemium</strong> banner. Paste the Freemium script in the marked spot in the &lt;head&gt; of <code>freemium.html</code>. Consent is stored per domain: use "Clear consent &amp; reload" to see the banner again after switching pages.</p>
 
+  <h2>Consent Status</h2>
+  <div class="card pending" id="consent-panel">
+    <div class="consent-summary">Banner result: <span class="badge">Checking…</span></div>
+    <div class="consent-cats">
+      <div class="consent-cat" id="cat-necessary"><span class="dot"></span> Necessary: <span class="val">–</span></div>
+      <div class="consent-cat" id="cat-preferences"><span class="dot"></span> Preferences: <span class="val">–</span></div>
+      <div class="consent-cat" id="cat-statistics"><span class="dot"></span> Statistics: <span class="val">–</span></div>
+      <div class="consent-cat" id="cat-marketing"><span class="dot"></span> Marketing: <span class="val">–</span></div>
+    </div>
+    <div class="consent-meta" id="consent-meta"></div>
+    <ul id="consent-log"></ul>
+  </div>
+
   <h2>Service Status</h2>
   <div id="status-panel">
     <div class="status-item"><span class="dot loaded"></span> Cookiebot (Freemium)</div>

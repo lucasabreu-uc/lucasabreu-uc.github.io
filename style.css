@@ -155,3 +155,49 @@ nav a[aria-current="page"] {
 nav a.tab-premium  { --tab: #d29922; }
 nav a.tab-trial    { --tab: #3fb950; }
 nav a.tab-freemium { --tab: #a371f7; }
+
+/* Consent status panel */
+#consent-panel .consent-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+#consent-panel .consent-summary .badge {
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 14px;
+  background: var(--border);
+  color: var(--text);
+}
+#consent-panel.accepted .badge { background: #238636; color: #fff; }
+#consent-panel.declined .badge { background: #da3633; color: #fff; }
+#consent-panel.partial  .badge { background: #9e6a03; color: #fff; }
+#consent-panel.pending  .badge { background: #1f6feb; color: #fff; }
+#consent-panel.nobanner .badge { background: #6e7681; color: #fff; }
+.consent-cats { display: flex; flex-wrap: wrap; gap: 10px; }
+.consent-cat {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.consent-cat .dot.on  { background: #3fb950; }
+.consent-cat .dot.off { background: #f85149; }
+.consent-meta { color: var(--muted); font-size: 13px; margin-top: 10px; }
+#consent-log {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  max-height: 120px;
+  overflow-y: auto;
+}
