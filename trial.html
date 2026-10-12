@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trial Banner - Lucas Abreu</title>
+
+<!-- ▼▼▼ PASTE THE TRIAL BANNER SCRIPT HERE (must load before any other script/tracker) ▼▼▼ -->
+<!--
+<script id="Cookiebot" src="https://.../uc.js" data-cbid="YOUR-TRIAL-CBID" data-blockingmode="auto" type="text/javascript"></script>
+-->
+<!-- ▲▲▲ END OF TRIAL BANNER SCRIPT ▲▲▲ -->
+
+<script id="Cookiebot" src="https://dev-consent-cookiebot-com.cookiebot.dev/uc.js" data-cbid="477a4422-51fd-4169-ba3f-4f3b954e7e90" data-blockingmode="auto" type="text/javascript"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page-trial">
+
+<header>
+  <h1>Lucas Abreu <span class="banner-tag">Trial banner</span></h1>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="trial.html">Trial</a>
+  <a href="premium.html">Premium</a>
+  <a href="freemium.html">Freemium</a>
+</nav>
+
+<main>
+  <p>Test page for the <strong>Trial</strong> banner. Paste the Trial script in the marked spot in the &lt;head&gt; of <code>trial.html</code>. Consent is stored per domain: use "Clear consent &amp; reload" to see the banner again after switching pages.</p>
+
+  <h2>Service Status</h2>
+  <div id="status-panel">
+    <div class="status-item"><span class="dot loaded"></span> Cookiebot (Trial)</div>
+    <div class="status-item"><span class="dot" id="dot-yt"></span> YouTube</div>
+    <div class="status-item"><span class="dot" id="dot-vimeo"></span> Vimeo</div>
+    <div class="status-item"><span class="dot" id="dot-sc"></span> SoundCloud</div>
+  </div>
+
+  <h2>Media Embeds</h2>
+
+  <div class="card">
+    <div class="card-title">▶ YouTube (Privacy Enhanced) <span class="domain">youtube-nocookie.com</span></div>
+    <iframe id="frame-yt-nc" height="220" data-src="https://www.youtube-nocookie.com/embed/bp612TdEK1c" data-cookieconsent="marketing" allowfullscreen></iframe>
+  </div>
+
+  <div class="card">
+    <div class="card-title">▶ YouTube <span class="domain">youtube.com</span></div>
+    <iframe id="frame-yt" height="220" data-src="https://www.youtube.com/embed/tROVq1lW0IU" data-cookieconsent="marketing" allowfullscreen></iframe>
+  </div>
+
+  <div class="card">
+    <div class="card-title">▶ Vimeo <span class="domain">vimeo.com</span></div>
+    <iframe id="frame-vimeo" height="220" data-src="https://player.vimeo.com/video/76979871" data-cookieconsent="marketing" allowfullscreen></iframe>
+  </div>
+
+  <div class="card">
+    <div class="card-title">♪ SoundCloud <span class="domain">soundcloud.com</span></div>
+    <iframe id="frame-sc" height="120" data-src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1398648325&color=%2358a6ff&auto_play=false&show_artwork=true" data-cookieconsent="marketing"></iframe>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🕐 Live Clock <span class="domain">clocklink.com</span></div>
+    <iframe height="120" src="https://www.clocklink.com/html5embed.php?clock=004&timezone=ACST&color=green&size=120"></iframe>
+    <p class="note">Live clock widget via clocklink.com — may be blocked depending on your consent settings.</p>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 Lucas Abreu · GitHub Test Lab · Built for CMP & consent experimentation
+  <div class="tools">
+    <a onclick="window.Cookiebot && window.Cookiebot.show()">Privacy settings</a>
+    <a onclick="clearConsent()">Clear consent &amp; reload</a>
+  </div>
+</footer>
+
+<script src="status.js"></script>
+</body>
+</html>

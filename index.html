@@ -8,113 +8,7 @@
 <!-- Cookiebot - must load before any other script/tracker -->    
 <script id="Cookiebot" src="https://dev-consent-cookiebot-com.cookiebot.dev/uc.js" data-cbid="b6cccea1-1f09-49ef-a409-1b42962cec18" data-blockingmode="auto" type="text/javascript"></script>
 
-<style>
-  :root {
-    --bg: #0d1117;
-    --panel: #161b22;
-    --border: #30363d;
-    --text: #c9d1d9;
-    --muted: #8b949e;
-    --accent: #58a6ff;
-  }
-  * { box-sizing: border-box; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    margin: 0;
-    padding: 0 20px 60px;
-  }
-  header {
-    max-width: 900px;
-    margin: 0 auto;
-    padding-top: 30px;
-  }
-  h1 { margin-bottom: 4px; }
-  nav {
-    max-width: 900px;
-    margin: 0 auto 30px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 16px;
-  }
-  nav a {
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 14px;
-  }
-  nav a:hover { text-decoration: underline; }
-  main { max-width: 900px; margin: 0 auto; }
-  h2 {
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 8px;
-    margin-top: 40px;
-  }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 16px;
-  }
-  .card-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .card-title .domain {
-    font-weight: 400;
-    color: var(--muted);
-    font-size: 13px;
-  }
-  .card iframe, .card video {
-    width: 100%;
-    border: none;
-    border-radius: 6px;
-  }
-  .card p.note {
-    color: var(--muted);
-    font-size: 13px;
-    margin-top: 8px;
-  }
-  #status-panel {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .status-item {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--muted);
-    display: inline-block;
-  }
-  .dot.loaded { background: #3fb950; }
-  .dot.blocked { background: #f85149; }
-  footer {
-    max-width: 900px;
-    margin: 60px auto 0;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 13px;
-    text-align: center;
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -124,6 +18,9 @@
 
 <nav>
   <a href="index.html">Home</a>
+  <a href="trial.html">Trial</a>
+  <a href="premium.html">Premium</a>
+  <a href="freemium.html">Freemium</a>
 </nav>
 
 <main>
@@ -171,37 +68,7 @@
     <a onclick="window.Cookiebot.show()" href="#">Privacy settings</a>
 </footer>
 
-<script>
-  // Detects real status of marketing services (YouTube, Vimeo, SoundCloud)
-  // Cookiebot automatically swaps data-src -> src once the user accepts
-  // the "marketing" category (thanks to the data-cookieconsent="marketing" attribute).
-  const services = [
-    { id: 'dot-yt',    frame: 'frame-yt-nc' },
-    { id: 'dot-vimeo', frame: 'frame-vimeo' },
-    { id: 'dot-sc',    frame: 'frame-sc' }
-  ];
-
-  function updateStatus() {
-    services.forEach(function (s) {
-      const dot = document.getElementById(s.id);
-      const frame = document.getElementById(s.frame);
-      if (!dot || !frame) return;
-
-      const hasLoaded = !!frame.getAttribute('src');
-      dot.classList.remove('loaded', 'blocked');
-      dot.classList.add(hasLoaded ? 'loaded' : 'blocked');
-      dot.title = hasLoaded ? 'Loaded' : 'Blocked (awaiting consent)';
-    });
-  }
-
-  // Initial state (before the user responds to the banner)
-  document.addEventListener('DOMContentLoaded', updateStatus);
-
-  // Cookiebot fires these global events when the user accepts/declines
-  window.addEventListener('CookiebotOnAccept', updateStatus);
-  window.addEventListener('CookiebotOnDecline', updateStatus);
-  window.addEventListener('CookiebotOnConsentReady', updateStatus);
-</script>
+<script src="status.js"></script>
 
 </body>
 </html>
