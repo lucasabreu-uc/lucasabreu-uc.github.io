@@ -256,3 +256,49 @@ details.collapsible > summary::before {
 details.collapsible[open] > summary::before { transform: rotate(90deg); }
 details.collapsible > summary:hover { color: var(--accent); }
 details.collapsible > summary .hint { font-size: 13px; font-weight: 400; color: var(--muted); }
+
+/* CSP pages */
+body.page-csp { --accent: #f0883e; --bg: #1a110a; }
+nav a.tab-csp { --tab: #f0883e; }
+
+/* Lab panels (inspector.js, api-panel.js, csp-checker.js) */
+.lab-offscreen { position: fixed; left: -9999px; top: 0; }
+.lab-section { border-bottom: 1px solid var(--border); padding: 12px 0; }
+.lab-section:last-child { border-bottom: 0; }
+.lab-section-head, .lab-toolbar, .lab-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 6px 0;
+}
+.lab-section-head { justify-content: space-between; }
+.lab-hint { color: var(--muted); font-size: 12px; margin: 2px 0 6px; }
+.lab-inline { font-size: 13px; color: var(--muted); cursor: pointer; }
+.lab-btn {
+  background: var(--bg); color: var(--text); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px 12px; font-size: 13px; cursor: pointer;
+}
+.lab-btn:hover { border-color: var(--accent); color: var(--accent); }
+.lab-btn-small { padding: 2px 8px; font-size: 12px; }
+.lab-input {
+  background: var(--bg); color: var(--text); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px 10px; font-size: 13px; min-width: 220px;
+}
+.lab-pre {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+  padding: 10px; margin: 6px 0 0; font-size: 12px; max-height: 220px;
+  overflow: auto; white-space: pre-wrap; word-break: break-all;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.lab-check { font-size: 13px; font-weight: 600; margin: 4px 0; }
+.lab-check.ok, td.ok { color: #3fb950; }
+.lab-check.bad, td.bad { color: #f85149; }
+.lab-log { max-height: 360px; overflow-y: auto; }
+.lab-log-entry { border-left: 3px solid var(--border); padding-left: 10px; margin: 8px 0; }
+.lab-log-entry.ok { border-color: #3fb950; }
+.lab-log-entry.bad { border-color: #f85149; }
+.lab-log-head { font-size: 12px; color: var(--muted); font-family: ui-monospace, Menlo, monospace; }
+.lab-table-wrap { overflow-x: auto; margin: 6px 0 14px; }
+.lab-table { border-collapse: collapse; width: 100%; font-size: 12px; }
+.lab-table th, .lab-table td {
+  border: 1px solid var(--border); padding: 4px 8px; text-align: left;
+  vertical-align: top; word-break: break-all;
+}
+.lab-table th { background: var(--bg); color: var(--muted); }

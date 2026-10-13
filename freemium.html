@@ -26,6 +26,8 @@
   <a class="tab-premium" href="index.html">Premium</a>
   <a class="tab-trial" href="trial.html">Trial</a>
   <a class="tab-freemium" href="freemium.html" aria-current="page">Freemium</a>
+  <a class="tab-csp" href="csp-strict.html">CSP strict</a>
+  <a class="tab-csp" href="csp-none.html">CSP none</a>
 </nav>
 
 <main>
@@ -50,6 +52,16 @@
     <summary>Cookies in the Banner <span class="hint">click to expand</span></summary>
     <p id="cookie-declaration-msg"></p>
     <div id="cookie-declaration"></div>
+  </details>
+
+  <details class="collapsible">
+    <summary>Storage &amp; Strings Inspector <span class="hint">cookies, localStorage, TC/GACM/USP/GPP strings, GPC</span></summary>
+    <div class="card" id="inspector"></div>
+  </details>
+
+  <details class="collapsible">
+    <summary>API Panel <span class="hint">Cookiebot / UC_UI calls with a result log</span></summary>
+    <div class="card" id="api-panel"></div>
   </details>
 
   <h2>Service Status</h2>
@@ -98,5 +110,8 @@
 </footer>
 
 <script src="status.js"></script>
+<script src="lab-ui.js"></script>
+<script src="inspector.js"></script>
+<script src="api-panel.js"></script>
 </body>
 </html>

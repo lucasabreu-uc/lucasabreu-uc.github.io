@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSP None - Lucas Abreu</title>
+
+<!--
+  CONTROL PAGE: identical to csp-strict.html but WITHOUT any CSP and WITHOUT a nonce.
+  Covers: EUD-6153 (no nonce is added to banner elements on pages without a CSP).
+  Do not add a CSP <meta> here; the checker detects "no CSP" by its absence.
+-->
+
+<script src="lab-ui.js"></script>
+<script src="csp-checker.js"></script>
+
+<script id="Cookiebot" src="https://dev-consent-cookiebot-com.cookiebot.dev/uc.js" data-cbid="b6cccea1-1f09-49ef-a409-1b42962cec18" type="text/javascript"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page-csp">
+
+<header>
+  <h1>Lucas Abreu <span class="banner-tag">CSP none</span></h1>
+  <p class="account">Policy: <strong>none (control case)</strong></p>
+</header>
+
+<nav aria-label="Banner pages">
+  <a class="tab-premium" href="index.html">Premium</a>
+  <a class="tab-trial" href="trial.html">Trial</a>
+  <a class="tab-freemium" href="freemium.html">Freemium</a>
+  <a class="tab-csp" href="csp-strict.html">CSP strict</a>
+  <a class="tab-csp" href="csp-none.html" aria-current="page">CSP none</a>
+</nav>
+
+<main>
+  <p>Banner on a page <strong>without CSP</strong>. Expected: banner works and <strong>no nonce</strong> is added to any banner element. Compare with <a href="csp-strict.html">CSP strict</a>.</p>
+
+  <details class="collapsible">
+    <summary>Storage &amp; Strings Inspector <span class="hint">cookies, localStorage, TC/GACM/USP/GPP strings, GPC</span></summary>
+    <div class="card" id="inspector"></div>
+  </details>
+
+  <details class="collapsible">
+    <summary>API Panel <span class="hint">Cookiebot / UC_UI calls with a result log</span></summary>
+    <div class="card" id="api-panel"></div>
+  </details>
+
+  <details class="collapsible">
+    <summary>CSP Checker <span class="hint">violations + nonce audit</span></summary>
+    <div class="card" id="csp-checker"></div>
+  </details>
+</main>
+
+<footer>
+  &copy; 2026 Lucas Abreu · GitHub Test Lab · Built for CMP &amp; consent experimentation
+</footer>
+
+<script src="inspector.js"></script>
+<script src="api-panel.js"></script>
+</body>
+</html>
