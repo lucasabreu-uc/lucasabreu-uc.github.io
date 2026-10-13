@@ -67,7 +67,8 @@
     add(visible(d), 'Banner visible', visible(d) ? 'yes' : 'in the DOM but hidden. Use "Open banner"');
 
     var roleEl = d.matches('[role="dialog"], [role="alertdialog"]') ? d : d.querySelector('[role="dialog"], [role="alertdialog"]');
-    add(!!roleEl, 'role="dialog"', roleEl ? 'found on ' + describe(roleEl) : 'no element with role dialog / alertdialog');
+    add(!!roleEl, 'role="dialog"', roleEl ? 'found on ' + describe(roleEl)
+      : 'banner root has role="' + (d.getAttribute('role') || 'none') + '" (dialog / alertdialog expected for modal banners; region can be intended for non-modal templates)');
 
     var modalEl = d.matches('[aria-modal]') ? d : d.querySelector('[aria-modal]');
     add(!!modalEl && modalEl.getAttribute('aria-modal') === 'true', 'aria-modal',
