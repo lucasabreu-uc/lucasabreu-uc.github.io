@@ -140,6 +140,9 @@ async function clearAllSiteData() {
     log(window.Cookiebot ? 'Page loaded (Cookiebot found)' : 'Page loaded (no Cookiebot)');
   });
   window.addEventListener('load', renderConsent);
+
+  // Called by the "Refresh" button of the Consent Status section
+  window.refreshConsentStatus = function () { renderConsent(); log('Refreshed manually'); };
 })();
 
 // ---- Cookie declaration: lists every cookie the banner knows about, per category ----

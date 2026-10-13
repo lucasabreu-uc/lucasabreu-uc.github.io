@@ -34,7 +34,10 @@
   <p>Test page for the <strong>Trial</strong> banner. Paste the Trial script in the marked spot in the &lt;head&gt; of <code>trial.html</code>. Consent is stored per domain: use "Clear consent &amp; reload" to see the banner again after switching pages.</p>
 
   <h2 class="with-action">Consent Status
+    <span class="btn-group">
+    <button type="button" class="btn-refresh" data-tip="Re-read the consent the banner currently reports" onclick="refreshConsentStatus()">&#8635; Refresh</button>
     <button type="button" class="btn-danger" data-tip="Wipes cookies, storage and caches for this site, then reloads" onclick="clearAllSiteData()">Clear ALL cookies &amp; site data</button>
+    </span>
   </h2>
   <div class="card pending" id="consent-panel">
     <div class="consent-summary">Banner result: <span class="badge">Checking…</span></div>
@@ -62,7 +65,7 @@
   </details>
 
   <details class="collapsible">
-    <summary>API Panel <span class="hint">Cookiebot / UC_UI calls with a result log</span></summary>
+    <summary>API Panel <span class="hint">Cookiebot calls with a result log</span></summary>
     <div class="card" id="api-panel"></div>
   </details>
 

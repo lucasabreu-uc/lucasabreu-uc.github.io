@@ -13,7 +13,7 @@ Static test site (GitHub Pages) for manual banner testing.
 | `status.js` | Consent status panel, cookie declaration, clear-consent tools |
 | `lab-ui.js` | Shared DOM helpers for the panels below |
 | `inspector.js` | Cookies, localStorage, TC / GACM / USP / GPP strings, GPC (EUD-6156/6157/6158) |
-| `api-panel.js` | Buttons for Cookiebot / UC_UI calls + result log (EUD-4697..4700, 4874..4879) |
+| `api-panel.js` | Buttons for `Cookiebot.*` calls + result log |
 | `csp-checker.js` | CSP violation list + nonce audit |
 
 Notes

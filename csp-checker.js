@@ -153,6 +153,7 @@
     panelRoot = document.getElementById('csp-checker');
     if (!panelRoot) return;
     render();
+    Lab.summaryButton(panelRoot, '\u21BB Refresh', render, 'Re-check nonces and violations now');
     Lab.onCookiebotEvents(function () { setTimeout(render, 300); });
     // The banner can render after the events above; a late audit catches it
     window.addEventListener('load', function () { setTimeout(render, 1500); });
