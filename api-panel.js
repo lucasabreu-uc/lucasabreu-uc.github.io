@@ -96,11 +96,15 @@
   var LANGS = ['en', 'de', 'fr', 'es', 'it', 'pt', 'nl', 'sv', 'da', 'fi', 'pl', 'ja'];
 
   function build(root) {
-    logBox = el('div', { class: 'lab-log' });
+    root.textContent = '';
+    if (!logBox) logBox = el('div', { class: 'lab-log' }); // kept across refreshes so the call log survives
 
     var secondLayerTarget = textInput('api-second-layer', 'tab name or service/vendor id', 'Empty = plain call. Or a tab name, or a service / TCF vendor id');
     var langSel = el('select', { id: 'api-lang', class: 'lab-input', tip: 'Language code to switch the banner to', 'aria-label': 'Language' },
       LANGS.map(function (l) { return el('option', { value: l, text: l }); }));
+
+    root.appendChild(el('div', { class: 'lab-hint', text: 'Checked at ' + new Date().toLocaleTimeString() + ': Cookiebot ' +
+      (window.Cookiebot ? 'available' : 'NOT available') + ', UC_UI ' + (window.UC_UI ? 'available' : 'NOT available') + '.' }));
 
     root.appendChild(group('Cookiebot object',
       'Basic banner control. renew() re-creates the banner elements (EUD-6152: check nonce + CSP violations on the CSP page).',
@@ -164,6 +168,8 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var root = document.getElementById('api-panel');
-    if (root) build(root);
+    if (!root) return;
+    build(root);
+    Lab.summaryButton(root, '\u21BB Refresh', function () { build(root); }, 'Re-check Cookiebot / UC_UI availability (call log is kept)');
   });
 })();

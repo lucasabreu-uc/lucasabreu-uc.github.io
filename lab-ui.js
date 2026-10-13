@@ -52,6 +52,17 @@ window.Lab = (function () {
     return b;
   }
 
+  // Puts a button at the end of the title row of the <details> that contains `root`,
+  // so it is visible while the section is still closed. Clicking it does not toggle the section.
+  function summaryButton(root, label, onClick, tip) {
+    var summary = root.closest('details') && root.closest('details').querySelector('summary');
+    if (!summary) return null;
+    var b = button(label, function (e) { e.preventDefault(); e.stopPropagation(); onClick(e); }, '', tip);
+    b.className = 'btn-refresh lab-summary-btn';
+    summary.appendChild(b);
+    return b;
+  }
+
   // Re-render on every Cookiebot event so panels stay in sync with the banner
   var COOKIEBOT_EVENTS = [
     'CookiebotOnDialogDisplay', 'CookiebotOnConsentReady', 'CookiebotOnAccept',
@@ -61,5 +72,5 @@ window.Lab = (function () {
     COOKIEBOT_EVENTS.forEach(function (e) { window.addEventListener(e, fn); });
   }
 
-  return { el: el, pretty: pretty, copy: copy, button: button, onCookiebotEvents: onCookiebotEvents };
+  return { el: el, pretty: pretty, copy: copy, button: button, summaryButton: summaryButton, onCookiebotEvents: onCookiebotEvents };
 })();

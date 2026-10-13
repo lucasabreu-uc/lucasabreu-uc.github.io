@@ -347,3 +347,9 @@ nav a.tab-csp { --tab: #f0883e; }
 /* h2 font-weight leaks into tooltips; right-aligned buttons open leftwards */
 h2.with-action [data-tip]:hover::after,
 h2.with-action [data-tip]:focus-visible::after { left: auto; right: 0; }
+
+/* Refresh button on the title row of a collapsible section */
+details.collapsible > summary .btn-refresh,
+details.collapsible > summary .lab-summary-btn { margin-left: auto; font-size: 13px; font-weight: 500; flex-shrink: 0; }
+details.collapsible > summary [data-tip]:hover::after,
+details.collapsible > summary [data-tip]:focus-visible::after { left: auto; right: 0; }

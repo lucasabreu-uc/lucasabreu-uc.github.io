@@ -134,7 +134,6 @@
     root.textContent = '';
 
     var bar = el('div', { class: 'lab-toolbar' });
-    bar.appendChild(Lab.button('Refresh', refresh, '', 'Re-read cookies, storage and CMP APIs now'));
     bar.appendChild(Lab.button('Copy all as JSON', function (e) { Lab.copy(Lab.pretty(state), e.target); }, '', 'Copy the full snapshot, paste it as Xray evidence'));
 
     var chk = el('input', { type: 'checkbox', id: 'inspector-all-storage' });
@@ -170,6 +169,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     root = document.getElementById('inspector');
     if (!root) return;
+    Lab.summaryButton(root, '\u21BB Refresh', refresh, 'Re-read cookies, storage and CMP APIs now');
     refresh();
     // The banner writes cookies/storage slightly AFTER the event fires, so re-read a couple of times
     Lab.onCookiebotEvents(function () {
