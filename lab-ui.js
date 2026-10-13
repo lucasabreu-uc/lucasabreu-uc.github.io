@@ -6,8 +6,10 @@ window.Lab = (function () {
   function el(tag, attrs, children) {
     var node = document.createElement(tag);
     Object.keys(attrs || {}).forEach(function (k) {
+      if (attrs[k] === undefined) return;
       if (k === 'text') node.textContent = attrs[k];
       else if (k === 'class') node.className = attrs[k];
+      else if (k === 'tip') node.setAttribute('data-tip', attrs[k]); // CSS tooltip, see style.css
       else node.setAttribute(k, attrs[k]);
     });
     (children || []).forEach(function (c) { if (c) node.appendChild(c); });
@@ -43,8 +45,9 @@ window.Lab = (function () {
     done(ok);
   }
 
-  function button(label, onClick, extraClass) {
-    var b = el('button', { type: 'button', class: 'lab-btn ' + (extraClass || ''), text: label });
+  // tip = short tooltip shown on hover/focus (CSS-only, works under strict CSP)
+  function button(label, onClick, extraClass, tip) {
+    var b = el('button', { type: 'button', class: 'lab-btn ' + (extraClass || ''), text: label, tip: tip });
     b.addEventListener('click', onClick);
     return b;
   }

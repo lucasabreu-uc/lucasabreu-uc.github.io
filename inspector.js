@@ -122,7 +122,7 @@
     var pre = el('pre', { class: 'lab-pre', text: Lab.pretty(value) });
     var head = el('div', { class: 'lab-section-head' }, [
       el('strong', { text: title }),
-      Lab.button('Copy', function (e) { Lab.copy(Lab.pretty(value), e.target); }, 'lab-btn-small')
+      Lab.button('Copy', function (e) { Lab.copy(Lab.pretty(value), e.target); }, 'lab-btn-small', 'Copy this block to the clipboard')
     ]);
     var kids = [head, el('div', { class: 'lab-hint', text: hint })];
     if (check) kids.push(el('div', { class: 'lab-check ' + (check.ok ? 'ok' : 'bad'), text: (check.ok ? 'PASS: ' : 'CHECK: ') + check.msg }));
@@ -134,13 +134,13 @@
     root.textContent = '';
 
     var bar = el('div', { class: 'lab-toolbar' });
-    bar.appendChild(Lab.button('Refresh', refresh));
-    bar.appendChild(Lab.button('Copy all as JSON', function (e) { Lab.copy(Lab.pretty(state), e.target); }));
+    bar.appendChild(Lab.button('Refresh', refresh, '', 'Re-read cookies, storage and CMP APIs now'));
+    bar.appendChild(Lab.button('Copy all as JSON', function (e) { Lab.copy(Lab.pretty(state), e.target); }, '', 'Copy the full snapshot, paste it as Xray evidence'));
 
     var chk = el('input', { type: 'checkbox', id: 'inspector-all-storage' });
     chk.checked = showAllStorage;
     chk.addEventListener('change', function () { showAllStorage = chk.checked; refresh(); });
-    bar.appendChild(el('label', { class: 'lab-inline', for: 'inspector-all-storage' }, [chk, el('span', { text: ' Show ALL localStorage keys' })]));
+    bar.appendChild(el('label', { class: 'lab-inline', for: 'inspector-all-storage', tip: 'Off = only banner-related keys. On = every key on this site' }, [chk, el('span', { text: ' Show ALL localStorage keys' })]));
     root.appendChild(bar);
 
     root.appendChild(el('div', { class: 'lab-hint', text: 'Collected at ' + state.collectedAt + '. Auto-refreshes on every Cookiebot event.' }));
@@ -156,8 +156,15 @@
     root.appendChild(section('Global Privacy Control', 'navigator.globalPrivacyControl. Enable GPC in the browser (Firefox/Brave) to test the GPC scenarios.', state.gpc));
   }
 
+  // Only the latest refresh may render: events + focus can fire overlapping async collects
+  var refreshId = 0;
   function refresh() {
-    collect().then(function (snap) { state = snap; render(); });
+    var id = ++refreshId;
+    collect().then(function (snap) {
+      if (id !== refreshId) return;
+      state = snap;
+      render();
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {

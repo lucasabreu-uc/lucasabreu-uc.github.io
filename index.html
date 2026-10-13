@@ -29,7 +29,7 @@
   <p>Test page for the <strong>Premium</strong> banner (this is the home page). Consent is stored per domain: use "Clear consent &amp; reload" to see the banner again after switching pages.</p>
 
   <h2 class="with-action">Consent Status
-    <button type="button" class="btn-danger" onclick="clearAllSiteData()">Clear ALL cookies &amp; site data</button>
+    <button type="button" class="btn-danger" data-tip="Wipes cookies, storage and caches for this site, then reloads" onclick="clearAllSiteData()">Clear ALL cookies &amp; site data</button>
   </h2>
   <div class="card pending" id="consent-panel">
     <div class="consent-summary">Banner result: <span class="badge">Checking…</span></div>
@@ -99,8 +99,8 @@
 <footer>
   &copy; 2026 Lucas Abreu · GitHub Test Lab · Built for CMP & consent experimentation
   <div class="tools">
-    <a onclick="window.Cookiebot && window.Cookiebot.show()">Privacy settings</a>
-    <a onclick="clearConsent()">Clear consent &amp; reload</a>
+    <a data-tip="Reopen the banner" onclick="window.Cookiebot && window.Cookiebot.show()">Privacy settings</a>
+    <a data-tip="Delete only the consent cookies and reload" onclick="clearConsent()">Clear consent &amp; reload</a>
   </div>
 </footer>
 

@@ -99,12 +99,12 @@
 
     // ---- actions ----
     panelRoot.appendChild(el('div', { class: 'lab-toolbar' }, [
-      Lab.button('Re-run audit', render),
+      Lab.button('Re-run audit', render, '', 'Re-check nonces and violations now'),
       Lab.button('Cookiebot.renew() then re-audit', function () {
         // EUD-6152: renew re-creates the banner; wait a moment so new elements exist before auditing
         if (window.Cookiebot && typeof window.Cookiebot.renew === 'function') window.Cookiebot.renew();
         setTimeout(render, 1500);
-      }),
+      }, '', 'EUD-6152: re-create the banner, then audit the new elements'),
       Lab.button('Clear consent & reload', function () {
         // Same idea as clearConsent() in status.js (not loaded here: it injects an un-nonced cd.js script)
         ['CookieConsent', 'CookieConsentBulkTicket'].forEach(function (name) {
@@ -112,11 +112,11 @@
           document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + location.hostname;
         });
         location.reload();
-      }),
-      Lab.button('Clear violations', function () { violations = []; render(); }, 'lab-btn-small'),
+      }, '', 'Delete consent cookies and reload so the banner shows again'),
+      Lab.button('Clear violations', function () { violations = []; render(); }, 'lab-btn-small', 'Empty the violation list (does not reload)'),
       Lab.button('Copy report as JSON', function (e) {
         Lab.copy(Lab.pretty({ mode: mode, url: location.href, violations: violations, nonceAudit: audit }), e.target);
-      }, 'lab-btn-small')
+      }, 'lab-btn-small', 'Copy mode, violations and nonce audit as JSON')
     ]));
 
     // ---- violations table ----

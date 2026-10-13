@@ -302,3 +302,30 @@ nav a.tab-csp { --tab: #f0883e; }
   vertical-align: top; word-break: break-all;
 }
 .lab-table th { background: var(--bg); color: var(--muted); }
+
+/* CSS-only tooltip: add data-tip="..." (Lab.el accepts tip:) - shows on hover and keyboard focus */
+[data-tip] { position: relative; }
+[data-tip]:hover::after, [data-tip]:focus-visible::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 6px);
+  z-index: 10;
+  width: max-content;
+  max-width: 260px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #000;
+  color: #fff;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: normal;
+  text-align: left;
+  pointer-events: none;
+}
+
+/* Right-aligned controls: open the tooltip leftwards so it stays on screen */
+.lab-section-head [data-tip]:hover::after,
+.lab-section-head [data-tip]:focus-visible::after { left: auto; right: 0; }

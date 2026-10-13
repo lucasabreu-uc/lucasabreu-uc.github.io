@@ -51,23 +51,37 @@
     ]);
   }
 
+  var TIPS = {
+    'Cookiebot.show': 'Open the banner (2nd layer if consent exists)',
+    'Cookiebot.hide': 'Close the banner without answering',
+    'Cookiebot.renew': 'Re-create the banner (shows it again, re-creates elements)',
+    'Cookiebot.withdraw': 'Withdraw consent and reopen the banner',
+    'Cookiebot.runScripts': 'Re-run scripts blocked by data-cookieconsent',
+    'UC_UI.acceptAllConsents': 'Accept everything programmatically',
+    'UC_UI.denyAllConsents': 'Deny all optional categories programmatically',
+    'UC_UI.isInitialized': 'Returns true once the UI is ready',
+    'UC_UI.closeCMP': 'Close the CMP dialog',
+    'UC_UI.getServicesBaseInfo': 'Returns the list of services (basic data)',
+    'UC_UI.getServicesFullInfo': 'Returns the list of services (full data)'
+  };
+
   function callBtn(label, path, args) {
     return Lab.button(label, function () {
       run(path + '(' + (args || []).map(function (a) { return JSON.stringify(a); }).join(', ') + ')', function () {
         var parts = path.split('.');
         return need(path)[parts[1]].apply(window[parts[0]], args || []);
       });
-    });
+    }, '', TIPS[path]);
   }
 
-  function textInput(id, placeholder) {
-    return el('input', { type: 'text', id: id, class: 'lab-input', placeholder: placeholder });
+  function textInput(id, placeholder, tip) {
+    return el('input', { type: 'text', id: id, class: 'lab-input', placeholder: placeholder, tip: tip, 'aria-label': placeholder });
   }
 
   // EUD-4874..4879: the result of getServicesBaseInfo() must support .map/.filter/.find
   // and null/undefined must be handled without throwing.
   function arrayMethodsCheck() {
-    var info = need('UC_UI').getServicesBaseInfo();
+    var info = need('UC_UI.getServicesBaseInfo').getServicesBaseInfo();
     var report = { type: Array.isArray(info) ? 'array (' + info.length + ' items)' : String(info) };
     if (!Array.isArray(info)) {
       report.note = 'Not an array: scenario "Handling null or undefined data" - make sure nothing threw above.';
@@ -84,8 +98,8 @@
   function build(root) {
     logBox = el('div', { class: 'lab-log' });
 
-    var secondLayerTarget = textInput('api-second-layer', 'tab name or service/vendor id');
-    var langSel = el('select', { id: 'api-lang', class: 'lab-input' },
+    var secondLayerTarget = textInput('api-second-layer', 'tab name or service/vendor id', 'Empty = plain call. Or a tab name, or a service / TCF vendor id');
+    var langSel = el('select', { id: 'api-lang', class: 'lab-input', tip: 'Language code to switch the banner to', 'aria-label': 'Language' },
       LANGS.map(function (l) { return el('option', { value: l, text: l }); }));
 
     root.appendChild(group('Cookiebot object',
@@ -117,7 +131,7 @@
           var args = v ? [asNumber] : [];
           run('UC_UI.showSecondLayer(' + args.map(function (a) { return JSON.stringify(a); }).join(', ') + ')',
             function () { return need('UC_UI.showSecondLayer').showSecondLayer.apply(window.UC_UI, args); });
-        })
+        }, '', 'Open the 2nd layer. Click twice to test "already open"')
       ]));
 
     root.appendChild(group('Services info + array methods',
@@ -125,7 +139,7 @@
       [
         callBtn('getServicesBaseInfo()', 'UC_UI.getServicesBaseInfo'),
         callBtn('getServicesFullInfo()', 'UC_UI.getServicesFullInfo'),
-        Lab.button('Run map / filter / find check', function () { run('array methods on getServicesBaseInfo()', arrayMethodsCheck); })
+        Lab.button('Run map / filter / find check', function () { run('array methods on getServicesBaseInfo()', arrayMethodsCheck); }, '', 'Runs .map / .filter / .find on the result and handles null')
       ]));
 
     root.appendChild(group('Language',
@@ -138,12 +152,12 @@
             if (window.Cookiebot && typeof window.Cookiebot.changeLanguage === 'function') return window.Cookiebot.changeLanguage(lang);
             return need('UC_UI.updateLanguage').updateLanguage(lang);
           });
-        })
+        }, '', 'Apply the selected language, then open the banner to verify texts')
       ]));
 
     root.appendChild(el('div', { class: 'lab-toolbar' }, [
       el('strong', { text: 'Call log' }),
-      Lab.button('Clear log', function () { logBox.textContent = ''; }, 'lab-btn-small')
+      Lab.button('Clear log', function () { logBox.textContent = ''; }, 'lab-btn-small', 'Remove all log entries')
     ]));
     root.appendChild(logBox);
   }
