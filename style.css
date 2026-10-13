@@ -329,3 +329,21 @@ nav a.tab-csp { --tab: #f0883e; }
 /* Right-aligned controls: open the tooltip leftwards so it stays on screen */
 .lab-section-head [data-tip]:hover::after,
 .lab-section-head [data-tip]:focus-visible::after { left: auto; right: 0; }
+
+/* Section refresh buttons (main pages) */
+.btn-refresh {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn-refresh:hover { background: var(--accent); color: var(--bg); }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.section-actions { margin: 0 0 8px; }
+/* h2 font-weight leaks into tooltips; right-aligned buttons open leftwards */
+h2.with-action [data-tip]:hover::after,
+h2.with-action [data-tip]:focus-visible::after { left: auto; right: 0; }

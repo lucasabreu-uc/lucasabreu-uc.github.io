@@ -171,7 +171,12 @@
     root = document.getElementById('inspector');
     if (!root) return;
     refresh();
-    Lab.onCookiebotEvents(refresh);
+    // The banner writes cookies/storage slightly AFTER the event fires, so re-read a couple of times
+    Lab.onCookiebotEvents(function () {
+      refresh();
+      setTimeout(refresh, 700);
+      setTimeout(refresh, 2000);
+    });
     // Cookies/localStorage can change without an event (e.g. "Clear consent"): cheap safety net
     window.addEventListener('focus', refresh);
   });

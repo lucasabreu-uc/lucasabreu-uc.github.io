@@ -145,7 +145,9 @@ async function clearAllSiteData() {
 // ---- Cookie declaration: lists every cookie the banner knows about, per category ----
 // Built from the page's own Cookiebot <script id="Cookiebot"> (same domain + cbid),
 // so each banner page shows its own scan result.
-document.addEventListener('DOMContentLoaded', function () {
+// Also called by the "Refresh" button of that section: it re-injects cd.js so the
+// list (and the consent status inside it) is rebuilt without reloading the page.
+function loadCookieDeclaration() {
   var box = document.getElementById('cookie-declaration');
   var msg = document.getElementById('cookie-declaration-msg');
   if (!box) return;
@@ -157,6 +159,8 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
+  box.style.display = '';
+  box.textContent = '';
   var url = new URL(tag.src).origin + '/' + tag.getAttribute('data-cbid') + '/cd.js';
   var s = document.createElement('script');
   s.id = 'CookieDeclaration';
@@ -169,5 +173,31 @@ document.addEventListener('DOMContentLoaded', function () {
     msg.textContent = 'Could not load the cookie list from ' + url;
   };
   box.appendChild(s);
-  msg.textContent = 'Loaded from ' + url;
+  msg.textContent = 'Loaded from ' + url + ' at ' + new Date().toLocaleTimeString();
+}
+document.addEventListener('DOMContentLoaded', loadCookieDeclaration);
+
+// ---- Section "Refresh" buttons (Service Status, Media Embeds) ----
+// Cookiebot swaps data-src -> src a moment AFTER the consent event, so the dots are
+// re-checked a few times after every answer. The buttons do the same on demand.
+function refreshServiceStatus() {
+  updateStatus();
+}
+
+// Re-runs blocked scripts and reloads the embeds that already loaded.
+// Embeds still blocked after this need a full page reload ("Reload page").
+function reloadEmbeds() {
+  if (window.Cookiebot && typeof window.Cookiebot.runScripts === 'function') window.Cookiebot.runScripts();
+  document.querySelectorAll('iframe[data-cookieconsent]').forEach(function (f) {
+    var src = f.getAttribute('src');
+    if (src) f.setAttribute('src', src);
+  });
+  setTimeout(updateStatus, 800);
+}
+
+['CookiebotOnAccept', 'CookiebotOnDecline', 'CookiebotOnConsentReady'].forEach(function (name) {
+  window.addEventListener(name, function () {
+    setTimeout(updateStatus, 600);
+    setTimeout(updateStatus, 2000);
+  });
 });

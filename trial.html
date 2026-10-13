@@ -50,6 +50,7 @@
 
   <details class="collapsible">
     <summary>Cookies in the Banner <span class="hint">click to expand</span></summary>
+    <div class="section-actions"><button type="button" class="btn-refresh" data-tip="Reload the cookie list from the banner server" onclick="loadCookieDeclaration()">&#8635; Refresh</button></div>
     <p id="cookie-declaration-msg"></p>
     <div id="cookie-declaration"></div>
   </details>
@@ -64,7 +65,9 @@
     <div class="card" id="api-panel"></div>
   </details>
 
-  <h2>Service Status</h2>
+  <h2 class="with-action">Service Status
+    <button type="button" class="btn-refresh" data-tip="Re-check which services are loaded or blocked" onclick="refreshServiceStatus()">&#8635; Refresh</button>
+  </h2>
   <div id="status-panel">
     <div class="status-item"><span class="dot loaded"></span> Cookiebot (Trial)</div>
     <div class="status-item"><span class="dot" id="dot-yt"></span> YouTube</div>
@@ -72,7 +75,12 @@
     <div class="status-item"><span class="dot" id="dot-sc"></span> SoundCloud</div>
   </div>
 
-  <h2>Media Embeds</h2>
+  <h2 class="with-action">Media Embeds
+    <span class="btn-group">
+      <button type="button" class="btn-refresh" data-tip="Re-run blocked scripts and reload loaded embeds" onclick="reloadEmbeds()">&#8635; Refresh embeds</button>
+      <button type="button" class="btn-refresh" data-tip="Full reload: use this if an embed is still blocked after Allow" onclick="location.reload()">&#8635; Reload page</button>
+    </span>
+  </h2>
 
   <div class="card">
     <div class="card-title">▶ YouTube (Privacy Enhanced) <span class="domain">youtube-nocookie.com</span></div>
