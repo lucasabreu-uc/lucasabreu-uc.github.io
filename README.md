@@ -19,6 +19,7 @@ Static test site (GitHub Pages) for manual banner testing.
 | `context-panel.js` | Test Context: browser / bot hints, GPC, regulation, country, page |
 | `event-log.js` | Records every `CookiebotOn*` event from page start (load it in `<head>` BEFORE the banner script) |
 | `events-panel.js` | Event Log panel + JSON export (log and full report for Xray) |
+| `glossary.js` | Glossary list + automatic tooltips on technical terms (edit the `GLOSSARY` array to add or fix a term) |
 | `csp-checker.js` | CSP violation list + nonce audit |
 
 Notes

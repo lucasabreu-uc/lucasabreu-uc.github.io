@@ -6,11 +6,11 @@
 <title>Premium Banner - Lucas Abreu</title>
 
 <!-- Records Cookiebot events from the very start: keep it BEFORE the banner script -->
-<script src="event-log.js?v=20261013e"></script>
+<script src="event-log.js?v=20261013f"></script>
 <!-- Premium banner script (must load before any other script/tracker) -->
 <script id="Cookiebot" src="https://dev-consent-cookiebot-com.cookiebot.dev/uc.js" data-cbid="b6cccea1-1f09-49ef-a409-1b42962cec18" data-blockingmode="auto" type="text/javascript"></script>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20261013f">
 </head>
 <body class="page-premium">
 
@@ -30,7 +30,7 @@
 <main>
   <p>Test page for the <strong>Premium</strong> banner (this is the home page). Consent is stored per domain: use "Clear consent &amp; reload" to see the banner again after switching pages.</p>
 
-  <h2 class="with-action">Consent Status
+  <h2 class="with-action"><span data-tip="What the banner says the visitor chose right now (read from window.Cookiebot), plus the events that changed it.">Consent Status</span>
     <span class="btn-group">
     <button type="button" class="btn-refresh" data-tip="Re-read the consent the banner currently reports" onclick="refreshConsentStatus()">&#8635; Refresh</button>
     <button type="button" class="btn-danger" data-tip="Wipes cookies, storage and caches for this site, then reloads" onclick="clearAllSiteData()">Clear ALL cookies &amp; site data</button>
@@ -49,7 +49,7 @@
   </div>
 
   <details class="collapsible">
-    <summary>Cookies in the Banner <span class="hint">click to expand</span>
+    <summary><span data-tip="The cookie list the banner shows to visitors, loaded from the Cookiebot server for this domain group.">Cookies in the Banner</span> <span class="hint">click to expand</span>
       <button type="button" class="btn-refresh" data-tip="Reload the cookie list from the banner server" onclick="loadCookieDeclaration()">&#8635; Refresh</button>
     </summary>
     <p id="cookie-declaration-msg"></p>
@@ -57,31 +57,31 @@
   </details>
 
   <details class="collapsible">
-    <summary>Storage &amp; Strings Inspector <span class="hint">cookies, localStorage, TC/GACM/USP/GPP strings, GPC</span></summary>
+    <summary><span data-tip="What the banner actually wrote: cookies, localStorage and the consent strings. Use it to verify the stored result after answering.">Storage &amp; Strings Inspector</span> <span class="hint">cookies, localStorage, TC/GACM/USP/GPP strings, GPC</span></summary>
     <div class="card" id="inspector"></div>
   </details>
 
   <details class="collapsible">
-    <summary>API Panel <span class="hint">Cookiebot calls with a result log</span></summary>
+    <summary><span data-tip="One button per Cookiebot API call, so you do not type them in the DevTools console. Every call is logged with its result.">API Panel</span> <span class="hint">Cookiebot calls with a result log</span></summary>
     <div class="card" id="api-panel"></div>
   </details>
 
   <details class="collapsible">
-    <summary>Accessibility &amp; Layout <span class="hint">axe, focus tracker, text spacing, zoom, 320px reflow</span></summary>
+    <summary><span data-tip="Accessibility and layout checks of the banner only (not this page): axe rules, focus order, text spacing, zoom, 320px reflow.">Accessibility &amp; Layout</span> <span class="hint">axe, focus tracker, text spacing, zoom, 320px reflow</span></summary>
     <div class="card" id="a11y-panel"></div>
   </details>
 
   <details class="collapsible">
-    <summary>Test Context <span class="hint">browser, bot hints, GPC, regulation / country, page</span></summary>
+    <summary><span data-tip="In which conditions this test runs: browser, bot hints, privacy signals and what Cookiebot reports.">Test Context</span> <span class="hint">browser, bot hints, GPC, regulation / country, page</span></summary>
     <div class="card" id="test-context"></div>
   </details>
 
   <details class="collapsible">
-    <summary>Event Log <span class="hint">every Cookiebot event + JSON export for Xray</span></summary>
+    <summary><span data-tip="Every Cookiebot event with its time and the consent state, kept across reloads. Export it as JSON for Xray.">Event Log</span> <span class="hint">every Cookiebot event + JSON export for Xray</span></summary>
     <div class="card" id="event-log"></div>
   </details>
 
-  <h2 class="with-action">Service Status
+  <h2 class="with-action"><span data-tip="Green = the embed received its src, so Cookiebot allowed it. Red = still blocked, waiting for consent in its category.">Service Status</span>
     <button type="button" class="btn-refresh" data-tip="Re-check which services are loaded or blocked" onclick="refreshServiceStatus()">&#8635; Refresh</button>
   </h2>
   <div id="status-panel">
@@ -91,7 +91,7 @@
     <div class="status-item"><span class="dot" id="dot-sc"></span> SoundCloud</div>
   </div>
 
-  <h2 class="with-action">Media Embeds
+  <h2 class="with-action"><span data-tip="Third-party embeds marked data-cookieconsent=marketing. They load only after Marketing consent.">Media Embeds</span>
     <span class="btn-group">
       <button type="button" class="btn-refresh" data-tip="Re-run blocked scripts and reload loaded embeds" onclick="reloadEmbeds()">&#8635; Refresh embeds</button>
       <button type="button" class="btn-refresh" data-tip="Full reload: use this if an embed is still blocked after Allow" onclick="location.reload()">&#8635; Reload page</button>
@@ -123,6 +123,11 @@
     <iframe height="120" src="https://www.clocklink.com/html5embed.php?clock=004&timezone=ACST&color=green&size=120"></iframe>
     <p class="note">Live clock widget via clocklink.com — may be blocked depending on your consent settings.</p>
   </div>
+
+  <details class="collapsible">
+    <summary><span data-tip="What every technical term used in this lab means. Terms with a dotted underline also explain themselves on hover, focus or tap.">Glossary</span> <span class="hint">what the terms in this lab mean</span></summary>
+    <div class="card" id="glossary"></div>
+  </details>
 </main>
 
 <footer>
@@ -133,13 +138,14 @@
   </div>
 </footer>
 
-<script src="status.js?v=20261013e"></script>
-<script src="lab-ui.js?v=20261013e"></script>
-<script src="inspector.js?v=20261013e"></script>
-<script src="api-panel.js?v=20261013e"></script>
-<script src="a11y-panel.js?v=20261013e"></script>
-<script src="context-panel.js?v=20261013e"></script>
-<script src="events-panel.js?v=20261013e"></script>
+<script src="status.js?v=20261013f"></script>
+<script src="lab-ui.js?v=20261013f"></script>
+<script src="inspector.js?v=20261013f"></script>
+<script src="api-panel.js?v=20261013f"></script>
+<script src="a11y-panel.js?v=20261013f"></script>
+<script src="context-panel.js?v=20261013f"></script>
+<script src="events-panel.js?v=20261013f"></script>
+<script src="glossary.js?v=20261013f"></script>
 
 </body>
 </html>

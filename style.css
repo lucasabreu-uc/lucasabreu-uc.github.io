@@ -305,7 +305,7 @@ nav a.tab-csp { --tab: #f0883e; }
 
 /* CSS-only tooltip: add data-tip="..." (Lab.el accepts tip:) - shows on hover and keyboard focus */
 [data-tip] { position: relative; }
-[data-tip]:hover::after, [data-tip]:focus-visible::after {
+[data-tip]:hover::after, [data-tip]:focus-visible::after, .lab-term:focus::after {
   content: attr(data-tip);
   position: absolute;
   left: 0;
@@ -365,3 +365,18 @@ html.lab-a11y-spacing #CybotCookiebotDialog p { margin-bottom: 2em !important; }
 html.lab-a11y-zoom-150 #CybotCookiebotDialog { zoom: 1.5; }
 html.lab-a11y-zoom-200 #CybotCookiebotDialog { zoom: 2; }
 .lab-a11y-focuslog { height: 200px; max-height: none; }
+
+/* Glossary terms (glossary.js): dotted underline, tooltip on hover / focus / tap */
+abbr.lab-term {
+  text-decoration: underline dotted var(--muted);
+  text-underline-offset: 3px;
+  cursor: help;
+}
+abbr.lab-term:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+/* Tooltip would leave the screen on the right: open it leftwards */
+[data-tip].tip-left:hover::after,
+[data-tip].tip-left:focus-visible::after,
+.lab-term.tip-left:focus::after { left: auto; right: 0; }
+.lab-hidden { display: none; }
+.lab-gloss-item { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.lab-gloss-item strong { color: var(--accent); }

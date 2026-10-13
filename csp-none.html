@@ -11,13 +11,13 @@
   Do not add a CSP <meta> here; the checker detects "no CSP" by its absence.
 -->
 
-<script src="event-log.js?v=20261013e"></script>
-<script src="lab-ui.js?v=20261013e"></script>
-<script src="csp-checker.js?v=20261013e"></script>
+<script src="event-log.js?v=20261013f"></script>
+<script src="lab-ui.js?v=20261013f"></script>
+<script src="csp-checker.js?v=20261013f"></script>
 
 <script id="Cookiebot" src="https://dev-consent-cookiebot-com.cookiebot.dev/uc.js" data-cbid="b6cccea1-1f09-49ef-a409-1b42962cec18" type="text/javascript"></script>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20261013f">
 </head>
 <body class="page-csp">
 
@@ -38,33 +38,38 @@
   <p>Banner on a page <strong>without CSP</strong>. Expected: banner works and <strong>no nonce</strong> is added to any banner element. Compare with <a href="csp-strict.html">CSP strict</a>.</p>
 
   <details class="collapsible">
-    <summary>Storage &amp; Strings Inspector <span class="hint">cookies, localStorage, TC/GACM/USP/GPP strings, GPC</span></summary>
+    <summary><span data-tip="What the banner actually wrote: cookies, localStorage and the consent strings. Use it to verify the stored result after answering.">Storage &amp; Strings Inspector</span> <span class="hint">cookies, localStorage, TC/GACM/USP/GPP strings, GPC</span></summary>
     <div class="card" id="inspector"></div>
   </details>
 
   <details class="collapsible">
-    <summary>API Panel <span class="hint">Cookiebot calls with a result log</span></summary>
+    <summary><span data-tip="One button per Cookiebot API call, so you do not type them in the DevTools console. Every call is logged with its result.">API Panel</span> <span class="hint">Cookiebot calls with a result log</span></summary>
     <div class="card" id="api-panel"></div>
   </details>
 
   <details class="collapsible">
-    <summary>Accessibility &amp; Layout <span class="hint">axe, focus tracker, text spacing, zoom, 320px reflow</span></summary>
+    <summary><span data-tip="Accessibility and layout checks of the banner only (not this page): axe rules, focus order, text spacing, zoom, 320px reflow.">Accessibility &amp; Layout</span> <span class="hint">axe, focus tracker, text spacing, zoom, 320px reflow</span></summary>
     <div class="card" id="a11y-panel"></div>
   </details>
 
   <details class="collapsible">
-    <summary>Test Context <span class="hint">browser, bot hints, GPC, regulation / country, page</span></summary>
+    <summary><span data-tip="In which conditions this test runs: browser, bot hints, privacy signals and what Cookiebot reports.">Test Context</span> <span class="hint">browser, bot hints, GPC, regulation / country, page</span></summary>
     <div class="card" id="test-context"></div>
   </details>
 
   <details class="collapsible">
-    <summary>Event Log <span class="hint">every Cookiebot event + JSON export for Xray</span></summary>
+    <summary><span data-tip="Every Cookiebot event with its time and the consent state, kept across reloads. Export it as JSON for Xray.">Event Log</span> <span class="hint">every Cookiebot event + JSON export for Xray</span></summary>
     <div class="card" id="event-log"></div>
   </details>
 
   <details class="collapsible">
-    <summary>CSP Checker <span class="hint">violations + nonce audit</span></summary>
+    <summary><span data-tip="CSP violations of this page, and whether every script / style created by the banner carries the page nonce.">CSP Checker</span> <span class="hint">violations + nonce audit</span></summary>
     <div class="card" id="csp-checker"></div>
+  </details>
+
+  <details class="collapsible">
+    <summary><span data-tip="What every technical term used in this lab means. Terms with a dotted underline also explain themselves on hover, focus or tap.">Glossary</span> <span class="hint">what the terms in this lab mean</span></summary>
+    <div class="card" id="glossary"></div>
   </details>
 </main>
 
@@ -72,10 +77,11 @@
   &copy; 2026 Lucas Abreu · GitHub Test Lab · Built for CMP &amp; consent experimentation
 </footer>
 
-<script src="inspector.js?v=20261013e"></script>
-<script src="api-panel.js?v=20261013e"></script>
-<script src="a11y-panel.js?v=20261013e"></script>
-<script src="context-panel.js?v=20261013e"></script>
-<script src="events-panel.js?v=20261013e"></script>
+<script src="inspector.js?v=20261013f"></script>
+<script src="api-panel.js?v=20261013f"></script>
+<script src="a11y-panel.js?v=20261013f"></script>
+<script src="context-panel.js?v=20261013f"></script>
+<script src="events-panel.js?v=20261013f"></script>
+<script src="glossary.js?v=20261013f"></script>
 </body>
 </html>
