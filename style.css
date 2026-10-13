@@ -353,3 +353,15 @@ details.collapsible > summary .btn-refresh,
 details.collapsible > summary .lab-summary-btn { margin-left: auto; font-size: 13px; font-weight: 500; flex-shrink: 0; }
 details.collapsible > summary [data-tip]:hover::after,
 details.collapsible > summary [data-tip]:focus-visible::after { left: auto; right: 0; }
+
+/* Accessibility & Layout panel: stress the banner (toggled by classes on <html>) */
+html.lab-a11y-spacing #CybotCookiebotDialog,
+html.lab-a11y-spacing #CybotCookiebotDialog * {
+  line-height: 1.5 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+html.lab-a11y-spacing #CybotCookiebotDialog p { margin-bottom: 2em !important; }
+html.lab-a11y-zoom-150 #CybotCookiebotDialog { zoom: 1.5; }
+html.lab-a11y-zoom-200 #CybotCookiebotDialog { zoom: 2; }
+.lab-a11y-focuslog { height: 200px; max-height: none; }
