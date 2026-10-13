@@ -31,17 +31,6 @@
     return out;
   }
 
-  // CookieConsent is a URL-encoded JS object literal: {stamp:'x',necessary:true,...}
-  // Convert it to JSON so it is readable; fall back to the raw string if that fails.
-  function decodeConsentCookie(raw) {
-    if (!raw) return null;
-    var decoded;
-    try { decoded = decodeURIComponent(raw); } catch (e) { return raw; }
-    try {
-      return JSON.parse(decoded.replace(/([{,])\s*([A-Za-z_]+)\s*:/g, '$1"$2":').replace(/'/g, '"'));
-    } catch (e) { return decoded; }
-  }
-
   function readStorage() {
     var out = {};
     try {
@@ -83,7 +72,7 @@
       url: location.href,
       userAgent: navigator.userAgent,
       gpc: navigator.globalPrivacyControl === undefined ? 'not supported by this browser' : navigator.globalPrivacyControl,
-      consentCookie: decodeConsentCookie(cookies.CookieConsent),
+      consentCookie: Lab.decodeConsentCookie(cookies.CookieConsent),
       bulkTicketCookie: cookies.CookieConsentBulkTicket || null,
       localStorage: readStorage()
     };
@@ -169,6 +158,7 @@
   Lab.ready(function () {
     root = document.getElementById('inspector');
     if (!root) return;
+    Lab.registerExport('inspector', function () { return state; });
     Lab.summaryButton(root, '\u21BB Refresh', refresh, 'Re-read cookies, storage and CMP APIs now');
     refresh();
     // The banner writes cookies/storage slightly AFTER the event fires, so re-read a couple of times

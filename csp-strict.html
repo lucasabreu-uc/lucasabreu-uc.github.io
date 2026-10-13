@@ -23,8 +23,9 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-labNonce2026'; style-src 'self' 'nonce-labNonce2026'; connect-src 'self' https://*.cookiebot.dev https://*.cookiebot.com https://*.usercentrics.eu https://*.usercentrics.com; img-src 'self' data: https:; font-src 'self' data: https:; frame-src https:; base-uri 'self'; form-action 'self'">
 
 <!-- Listeners first, so violations fired while the banner loads are captured -->
-<script src="lab-ui.js?v=20261013d"></script>
-<script src="csp-checker.js?v=20261013d"></script>
+<script src="event-log.js?v=20261013e"></script>
+<script src="lab-ui.js?v=20261013e"></script>
+<script src="csp-checker.js?v=20261013e"></script>
 
 <!-- Banner script. The nonce attribute is how the banner learns the page nonce (check EUD-6151 if elements come out without it). -->
 <script id="Cookiebot" nonce="labNonce2026" src="https://dev-consent-cookiebot-com.cookiebot.dev/uc.js" data-cbid="b6cccea1-1f09-49ef-a409-1b42962cec18" type="text/javascript"></script>
@@ -65,6 +66,16 @@
   </details>
 
   <details class="collapsible">
+    <summary>Test Context <span class="hint">browser, bot hints, GPC, regulation / country, page</span></summary>
+    <div class="card" id="test-context"></div>
+  </details>
+
+  <details class="collapsible">
+    <summary>Event Log <span class="hint">every Cookiebot event + JSON export for Xray</span></summary>
+    <div class="card" id="event-log"></div>
+  </details>
+
+  <details class="collapsible">
     <summary>CSP Checker <span class="hint">violations + nonce audit</span></summary>
     <div class="card" id="csp-checker"></div>
   </details>
@@ -74,8 +85,10 @@
   &copy; 2026 Lucas Abreu · GitHub Test Lab · Built for CMP &amp; consent experimentation
 </footer>
 
-<script src="inspector.js?v=20261013d"></script>
-<script src="api-panel.js?v=20261013d"></script>
-<script src="a11y-panel.js?v=20261013d"></script>
+<script src="inspector.js?v=20261013e"></script>
+<script src="api-panel.js?v=20261013e"></script>
+<script src="a11y-panel.js?v=20261013e"></script>
+<script src="context-panel.js?v=20261013e"></script>
+<script src="events-panel.js?v=20261013e"></script>
 </body>
 </html>

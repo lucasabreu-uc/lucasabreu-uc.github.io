@@ -7,8 +7,10 @@
 (function () {
   var el = Lab.el;
   var logBox;
+  var calls = []; // for the full report
 
   function log(label, outcome, ok) {
+    calls.unshift({ time: new Date().toISOString(), call: label, ok: ok, result: outcome });
     var entry = el('div', { class: 'lab-log-entry ' + (ok ? 'ok' : 'bad') }, [
       el('div', { class: 'lab-log-head', text: new Date().toLocaleTimeString() + '  ' + label + '  ->  ' + (ok ? 'OK' : 'ERROR') }),
       el('pre', { class: 'lab-pre', text: Lab.pretty(outcome) })
@@ -107,6 +109,7 @@
     var root = document.getElementById('api-panel');
     if (!root) return;
     build(root);
+    Lab.registerExport('apiCalls', function () { return calls; });
     Lab.summaryButton(root, '\u21BB Refresh', function () { build(root); }, 'Re-check Cookiebot availability (call log is kept)');
   });
 })();

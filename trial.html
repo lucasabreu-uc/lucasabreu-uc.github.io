@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trial Banner - Lucas Abreu</title>
 
+<!-- Records Cookiebot events from the very start: keep it BEFORE the banner script -->
+<script src="event-log.js?v=20261013e"></script>
 <!-- ▼▼▼ PASTE THE TRIAL BANNER SCRIPT HERE (must load before any other script/tracker) ▼▼▼ -->
 <!--
 <script id="Cookiebot" src="https://.../uc.js" data-cbid="YOUR-TRIAL-CBID" data-blockingmode="auto" type="text/javascript"></script>
@@ -74,6 +76,16 @@
     <div class="card" id="a11y-panel"></div>
   </details>
 
+  <details class="collapsible">
+    <summary>Test Context <span class="hint">browser, bot hints, GPC, regulation / country, page</span></summary>
+    <div class="card" id="test-context"></div>
+  </details>
+
+  <details class="collapsible">
+    <summary>Event Log <span class="hint">every Cookiebot event + JSON export for Xray</span></summary>
+    <div class="card" id="event-log"></div>
+  </details>
+
   <h2 class="with-action">Service Status
     <button type="button" class="btn-refresh" data-tip="Re-check which services are loaded or blocked" onclick="refreshServiceStatus()">&#8635; Refresh</button>
   </h2>
@@ -126,10 +138,12 @@
   </div>
 </footer>
 
-<script src="status.js?v=20261013d"></script>
-<script src="lab-ui.js?v=20261013d"></script>
-<script src="inspector.js?v=20261013d"></script>
-<script src="api-panel.js?v=20261013d"></script>
-<script src="a11y-panel.js?v=20261013d"></script>
+<script src="status.js?v=20261013e"></script>
+<script src="lab-ui.js?v=20261013e"></script>
+<script src="inspector.js?v=20261013e"></script>
+<script src="api-panel.js?v=20261013e"></script>
+<script src="a11y-panel.js?v=20261013e"></script>
+<script src="context-panel.js?v=20261013e"></script>
+<script src="events-panel.js?v=20261013e"></script>
 </body>
 </html>

@@ -314,6 +314,7 @@
     var root = document.getElementById('a11y-panel');
     if (!root) return;
     build(root);
+    Lab.registerExport('accessibility', function () { return { layout: layout, env: env(), audit: lastAudit, axe: lastAxe, focusHistory: focusHistory }; });
     Lab.summaryButton(root, '↻ Refresh', refresh, 'Re-run the static audit and re-read the environment');
     document.addEventListener('focusin', onFocusIn);
     window.addEventListener('resize', renderEnv);

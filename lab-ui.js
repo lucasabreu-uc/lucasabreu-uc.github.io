@@ -63,6 +63,38 @@ window.Lab = (function () {
     return b;
   }
 
+  // CookieConsent is a URL-encoded JS object literal: {stamp:'x',necessary:true,...}
+  // Convert it to JSON so it is readable; fall back to the raw string if that fails.
+  function decodeConsentCookie(raw) {
+    if (!raw) return null;
+    var decoded;
+    try { decoded = decodeURIComponent(raw); } catch (e) { return raw; }
+    try {
+      return JSON.parse(decoded.replace(/([{,])\s*([A-Za-z_]+)\s*:/g, '$1"$2":').replace(/'/g, '"'));
+    } catch (e) { return decoded; }
+  }
+
+  // Every panel registers a getter here; "Download full report" calls them all.
+  var exporters = {};
+  function registerExport(name, getter) { exporters[name] = getter; }
+  function report() {
+    var sections = {};
+    Object.keys(exporters).forEach(function (k) {
+      try { sections[k] = exporters[k](); } catch (e) { sections[k] = { error: String(e && e.message || e) }; }
+    });
+    return { generatedAt: new Date().toISOString(), page: location.href, userAgent: navigator.userAgent, sections: sections };
+  }
+
+  // Save text as a file (Blob + temporary link). Works under the strict CSP.
+  function download(filename, text) {
+    var url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+    var a = el('a', { href: url, download: filename, class: 'lab-offscreen' });
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
   // Runs fn once the DOM is ready, or right away if that already happened
   // (scripts can execute after DOMContentLoaded, e.g. when something delays them).
   function ready(fn) {
@@ -79,5 +111,5 @@ window.Lab = (function () {
     COOKIEBOT_EVENTS.forEach(function (e) { window.addEventListener(e, fn); });
   }
 
-  return { el: el, pretty: pretty, copy: copy, button: button, summaryButton: summaryButton, ready: ready, onCookiebotEvents: onCookiebotEvents };
+  return { el: el, pretty: pretty, copy: copy, button: button, summaryButton: summaryButton, ready: ready, decodeConsentCookie: decodeConsentCookie, registerExport: registerExport, report: report, download: download, onCookiebotEvents: onCookiebotEvents };
 })();
