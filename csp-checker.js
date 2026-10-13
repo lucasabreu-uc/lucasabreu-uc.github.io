@@ -149,7 +149,7 @@
     return el('div', { class: 'lab-table-wrap' }, [el('table', { class: 'lab-table' }, [el('thead', {}, [thead]), el('tbody', {}, body)])]);
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  Lab.ready(function () {
     panelRoot = document.getElementById('csp-checker');
     if (!panelRoot) return;
     render();

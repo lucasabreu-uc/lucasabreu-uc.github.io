@@ -1,3 +1,9 @@
+// Runs fn when the DOM is ready, or right away if DOMContentLoaded already fired
+function onReady(fn) {
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+  else fn();
+}
+
 // Detects real status of marketing services (YouTube, Vimeo, SoundCloud)
 // Cookiebot automatically swaps data-src -> src once the user accepts
 // the "marketing" category (thanks to the data-cookieconsent="marketing" attribute).
@@ -21,7 +27,7 @@ function updateStatus() {
 }
 
 // Initial state (before the user responds to the banner)
-document.addEventListener('DOMContentLoaded', updateStatus);
+onReady(updateStatus);
 
 // Cookiebot fires these global events when the user accepts/declines
 window.addEventListener('CookiebotOnAccept', updateStatus);
@@ -135,7 +141,7 @@ async function clearAllSiteData() {
     window.addEventListener(e[0], function () { log(e[1]); renderConsent(); });
   });
 
-  document.addEventListener('DOMContentLoaded', function () {
+  onReady(function () {
     renderConsent();
     log(window.Cookiebot ? 'Page loaded (Cookiebot found)' : 'Page loaded (no Cookiebot)');
   });
@@ -178,7 +184,7 @@ function loadCookieDeclaration() {
   box.appendChild(s);
   msg.textContent = 'Loaded from ' + url + ' at ' + new Date().toLocaleTimeString();
 }
-document.addEventListener('DOMContentLoaded', loadCookieDeclaration);
+onReady(loadCookieDeclaration);
 
 // ---- Section "Refresh" buttons (Service Status, Media Embeds) ----
 // Cookiebot swaps data-src -> src a moment AFTER the consent event, so the dots are

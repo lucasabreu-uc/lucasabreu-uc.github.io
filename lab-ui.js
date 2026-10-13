@@ -63,6 +63,13 @@ window.Lab = (function () {
     return b;
   }
 
+  // Runs fn once the DOM is ready, or right away if that already happened
+  // (scripts can execute after DOMContentLoaded, e.g. when something delays them).
+  function ready(fn) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
+  }
+
   // Re-render on every Cookiebot event so panels stay in sync with the banner
   var COOKIEBOT_EVENTS = [
     'CookiebotOnDialogDisplay', 'CookiebotOnConsentReady', 'CookiebotOnAccept',
@@ -72,5 +79,5 @@ window.Lab = (function () {
     COOKIEBOT_EVENTS.forEach(function (e) { window.addEventListener(e, fn); });
   }
 
-  return { el: el, pretty: pretty, copy: copy, button: button, summaryButton: summaryButton, onCookiebotEvents: onCookiebotEvents };
+  return { el: el, pretty: pretty, copy: copy, button: button, summaryButton: summaryButton, ready: ready, onCookiebotEvents: onCookiebotEvents };
 })();

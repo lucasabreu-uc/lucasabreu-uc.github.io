@@ -166,7 +166,7 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  Lab.ready(function () {
     root = document.getElementById('inspector');
     if (!root) return;
     Lab.summaryButton(root, '\u21BB Refresh', refresh, 'Re-read cookies, storage and CMP APIs now');

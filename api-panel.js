@@ -103,7 +103,7 @@
     root.appendChild(logBox);
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  Lab.ready(function () {
     var root = document.getElementById('api-panel');
     if (!root) return;
     build(root);
