@@ -16,21 +16,21 @@
   3. To change the nonce, edit it in the 3 places below (meta style-src, meta script-src, Cookiebot tag).
   4. Do NOT add inline <script>, inline style="" attributes or onclick="" handlers to this page:
      they would be blocked and show up as violations that are not the banner's fault.
-  5. connect-src / frame-src / img-src allow the Cookiebot/Usercentrics domains. If a request to a
+  5. connect-src / frame-src / img-src allow the Cookiebot domains. If a request to a
      new domain is blocked, the checker shows it with the blocked URL; add it here only if it is
      legitimately part of the banner.
 -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-labNonce2026'; style-src 'self' 'nonce-labNonce2026'; connect-src 'self' https://*.cookiebot.dev https://*.cookiebot.com https://*.usercentrics.eu https://*.usercentrics.com; img-src 'self' data: https:; font-src 'self' data: https:; frame-src https:; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'nonce-labNonce2026'; style-src 'self' 'nonce-labNonce2026'; connect-src 'self' https://*.cookiebot.dev https://*.cookiebot.com; img-src 'self' data: https:; font-src 'self' data: https:; frame-src https:; base-uri 'self'; form-action 'self'">
 
 <!-- Listeners first, so violations fired while the banner loads are captured -->
-<script src="event-log.js?v=20261013f"></script>
-<script src="lab-ui.js?v=20261013f"></script>
-<script src="csp-checker.js?v=20261013f"></script>
+<script src="event-log.js?v=20261014a"></script>
+<script src="lab-ui.js?v=20261014a"></script>
+<script src="csp-checker.js?v=20261014a"></script>
 
 <!-- Banner script. The nonce attribute is how the banner learns the page nonce (check EUD-6151 if elements come out without it). -->
 <script id="Cookiebot" nonce="labNonce2026" src="https://dev-consent-cookiebot-com.cookiebot.dev/uc.js" data-cbid="b6cccea1-1f09-49ef-a409-1b42962cec18" type="text/javascript"></script>
 
-<link rel="stylesheet" href="style.css?v=20261013f">
+<link rel="stylesheet" href="style.css?v=20261014a">
 </head>
 <body class="page-csp">
 
@@ -51,7 +51,7 @@
   <p>Banner under a <strong>strict, nonce-only CSP</strong>. Expected: banner renders and works, <strong>0 violations</strong>, every banner-created script/style carries the page nonce. Compare with <a href="csp-none.html">CSP none</a> (control case).</p>
 
   <details class="collapsible">
-    <summary><span data-tip="What the banner actually wrote: cookies, localStorage and the consent strings. Use it to verify the stored result after answering.">Storage &amp; Strings Inspector</span> <span class="hint">cookies, localStorage, TC/GACM/USP/GPP strings, GPC</span></summary>
+    <summary><span data-tip="What the banner actually wrote: cookies and the TCF consent string. Use it to verify the stored result after answering.">Storage &amp; Strings Inspector</span> <span class="hint">cookies, localStorage, TC/GACM/USP/GPP strings, GPC</span></summary>
     <div class="card" id="inspector"></div>
   </details>
 
@@ -90,11 +90,11 @@
   &copy; 2026 Lucas Abreu · GitHub Test Lab · Built for CMP &amp; consent experimentation
 </footer>
 
-<script src="inspector.js?v=20261013f"></script>
-<script src="api-panel.js?v=20261013f"></script>
-<script src="a11y-panel.js?v=20261013f"></script>
-<script src="context-panel.js?v=20261013f"></script>
-<script src="events-panel.js?v=20261013f"></script>
-<script src="glossary.js?v=20261013f"></script>
+<script src="inspector.js?v=20261014a"></script>
+<script src="api-panel.js?v=20261014a"></script>
+<script src="a11y-panel.js?v=20261014a"></script>
+<script src="context-panel.js?v=20261014a"></script>
+<script src="events-panel.js?v=20261014a"></script>
+<script src="glossary.js?v=20261014a"></script>
 </body>
 </html>

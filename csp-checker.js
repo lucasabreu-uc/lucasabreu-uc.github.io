@@ -42,7 +42,7 @@
     if (node.tagName === 'SCRIPT' && node.src) {
       var host = new URL(node.src).hostname;
       if (host === location.hostname) return 'own file';
-      return /cookiebot|usercentrics/i.test(host) ? 'cookiebot host' : 'third party';
+      return /cookiebot/i.test(host) ? 'cookiebot host' : 'third party';
     }
     if (node.tagName === 'LINK' && node.href) {
       return new URL(node.href).hostname === location.hostname ? 'own file' : 'external stylesheet';

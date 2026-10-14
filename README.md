@@ -12,7 +12,7 @@ Static test site (GitHub Pages) for manual banner testing.
 |---|---|
 | `status.js` | Consent status panel, cookie declaration, clear-consent tools |
 | `lab-ui.js` | Shared DOM helpers for the panels below |
-| `inspector.js` | Cookies, localStorage, TC / GACM / USP / GPP strings, GPC (EUD-6156/6157/6158) |
+| `inspector.js` | Consent cookie (decoded), TC string / TCF response, GPC |
 | `api-panel.js` | Buttons for `Cookiebot.*` calls + result log |
 | `a11y-panel.js` | Banner accessibility: axe-core, static audit, focus tracker, text spacing / zoom / 320px reflow, environment info |
 | `vendor/axe.min.js` | axe-core 4.10.2, loaded on demand by `a11y-panel.js` (local copy so the strict CSP allows it) |
