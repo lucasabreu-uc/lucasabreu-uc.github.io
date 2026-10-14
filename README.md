@@ -15,6 +15,7 @@ Static test site (GitHub Pages) for manual banner testing.
 | `inspector.js` | Consent cookie (decoded), TC string / TCF response, GPC |
 | `api-panel.js` | Buttons for `Cookiebot.*` calls + result log |
 | `a11y-panel.js` | Banner accessibility: axe-core, static audit, focus tracker, text spacing / zoom / 320px reflow, environment info |
+| `dsr-panel.js` | DSR link: settings the script received, container/anchor in the banner DOM, leftover `[#TOKEN#]` placeholders (read-only) |
 | `vendor/axe.min.js` | axe-core 4.10.2, loaded on demand by `a11y-panel.js` (local copy so the strict CSP allows it) |
 | `context-panel.js` | Test Context: browser / bot hints, GPC, regulation, country, page |
 | `event-log.js` | Records every `CookiebotOn*` event from page start (load it in `<head>` BEFORE the banner script) |
