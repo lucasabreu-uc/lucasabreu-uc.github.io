@@ -107,6 +107,7 @@ body { border-top: 6px solid var(--accent); }
 body.page-trial     { --accent: #3fb950; --bg: #0d1a11; }
 body.page-premium   { --accent: #d29922; --bg: #1a150a; }
 body.page-freemium  { --accent: #a371f7; --bg: #150f1f; }
+body.page-tcf       { --accent: #39c5cf; --bg: #0a1819; }
 
 .account { color: var(--muted); font-size: 14px; margin: 4px 0 0; }
 .account strong { color: var(--accent); font-weight: 600; user-select: all; }
@@ -155,6 +156,7 @@ nav a[aria-current="page"] {
 nav a.tab-premium  { --tab: #d29922; }
 nav a.tab-trial    { --tab: #3fb950; }
 nav a.tab-freemium { --tab: #a371f7; }
+nav a.tab-tcf      { --tab: #39c5cf; }
 
 /* Consent status panel */
 #consent-panel .consent-summary {

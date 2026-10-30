@@ -5,6 +5,7 @@ Static test site (GitHub Pages) for manual banner testing.
 | Page | Purpose |
 |---|---|
 | `index.html` / `trial.html` / `freemium.html` | One page per plan, each with its own banner script (cbid) |
+| `tcf.html` | Premium cbid with `data-framework="TCFv2.3"`, to test the TCF banner |
 | `csp-strict.html` | Strict nonce-only CSP (EUD-6150/6151/6152/6244) |
 | `csp-none.html` | Control page without CSP (EUD-6153) |
 
